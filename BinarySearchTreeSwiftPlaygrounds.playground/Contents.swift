@@ -10,6 +10,19 @@ class Node {
 
 class BinarySearchTree {
 
+    func insertNodeRecursive(_ root: Node?, _ data: Int) -> Node? {
+        let node = Node(data: data)
+        if root == nil {
+            return node
+        }
+        if data <= (root?.data)! {
+            root?.left = insertNodeRecursive(root?.left, data)
+        } else {
+            root?.right = insertNodeRecursive(root?.right, data)
+        }
+        return root
+    }
+
     func insert(_ data: Int, root: Node?) -> Node? {
         let node = Node(data: data)
         if root == nil {
@@ -197,6 +210,29 @@ class BinarySearchTree {
             }
         }
     }
+
+    func postOrderDepthFirstSearchIterative(_ root: inout Node?) {
+        if root == nil {
+            return
+        }
+        var stack1 = [Node]()
+        var stack2 = [Node]()
+        stack1.append(root!)
+        while !stack1.isEmpty {
+            root = stack1.removeLast()
+            stack2.append(root!)
+            if root?.left != nil {
+                stack1.append((root?.left)!)
+            }
+            if root?.right != nil {
+                stack1.append((root?.right)!)
+            }
+        }
+        while !stack2.isEmpty {
+            root = stack2.removeLast()
+            print((root?.data)!)
+        }
+    }
 }
 
 
@@ -245,6 +281,9 @@ mutableTree.insert(0, root: mutableRoot)
 mutableTree.insert(17, root: mutableRoot)
 mutableTree.insert(12, root: mutableRoot)
 mutableTree.breadthFirstSearch(&mutableRoot)
+
+
+mutableTree.postOrderDepthFirstSearchIterative(&mutableRoot)
 
 
 
