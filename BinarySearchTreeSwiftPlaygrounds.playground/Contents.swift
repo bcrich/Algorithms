@@ -251,6 +251,24 @@ class BinarySearchTree {
             }
         }
     }
+
+    func inOrderDepthFirstSearch(_ root: inout Node?) {
+        if root == nil {
+            return
+        }
+        var stack = [Node]()
+        while true {
+            if root != nil {
+                stack.append(root!)
+                root = (root?.left)!
+            } else {
+                if stack.isEmpty { break }
+                root = stack.removeLast()
+                print((root?.data)!)
+                root = (root?.right)!
+            }
+        }
+    }
 }
 
 
