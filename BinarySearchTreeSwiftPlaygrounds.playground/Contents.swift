@@ -167,6 +167,18 @@ class BinarySearchTree {
         return false
     }
 
+    func isBinarySearchTree(_ root: Node?, _ min: Int, _ max: Int) -> Bool  {
+        if root == nil {
+            return true
+        }
+
+        if (root?.data)! > max && (root?.data)! <= min {
+            return false
+        }
+
+        return isBinarySearchTree(root?.left, min, (root?.data)!) &&
+            isBinarySearchTree(root?.right, (root?.data)!, max)
+    }
 }
 
 
@@ -200,5 +212,7 @@ tree.inorder(root: root)
 
 print("*********")
 tree.invertTree(root)
+
+tree.isBinarySearchTree(root, Int.min, Int.max)
 
 
