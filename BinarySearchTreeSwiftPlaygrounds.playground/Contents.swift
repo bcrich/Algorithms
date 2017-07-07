@@ -233,6 +233,24 @@ class BinarySearchTree {
             print((root?.data)!)
         }
     }
+
+    func preOrderDepthFirstTraversal(_ root: inout Node?) {
+        if root == nil {
+            return
+        }
+        var stack = [Node]()
+        stack.append(root!)
+        while !stack.isEmpty {
+            root = stack.removeLast()
+            print((root?.data)!)
+            if root?.right != nil {
+                stack.append((root?.right)!)
+            }
+            if root?.left != nil {
+                stack.append((root?.left)!)
+            }
+        }
+    }
 }
 
 
