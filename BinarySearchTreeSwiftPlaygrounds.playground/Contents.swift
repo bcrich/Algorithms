@@ -179,6 +179,24 @@ class BinarySearchTree {
         return isBinarySearchTree(root?.left, min, (root?.data)!) &&
             isBinarySearchTree(root?.right, (root?.data)!, max)
     }
+
+    func breadthFirstSearch(_ root: inout Node?) {
+        if root == nil {
+            return
+        }
+        var queue = [Node]()
+        queue.append(root!)
+        while queue.count > 0 {
+            root = queue.removeFirst()
+            print((root?.data)!)
+            if root?.left != nil {
+                queue.append((root?.left)!)
+            }
+            if root?.right != nil {
+                queue.append((root?.right)!)
+            }
+        }
+    }
 }
 
 
@@ -214,5 +232,19 @@ print("*********")
 tree.invertTree(root)
 
 tree.isBinarySearchTree(root, Int.min, Int.max)
+
+
+var mutableRoot: Node? = Node(data: 10)
+var mutableTree = BinarySearchTree()
+mutableTree.insert(21, root: mutableRoot)
+mutableTree.insert(15, root: mutableRoot)
+mutableTree.insert(18, root: mutableRoot)
+mutableTree.insert(19, root: mutableRoot)
+mutableTree.insert(-6, root: mutableRoot)
+mutableTree.insert(0, root: mutableRoot)
+mutableTree.insert(17, root: mutableRoot)
+mutableTree.insert(12, root: mutableRoot)
+mutableTree.breadthFirstSearch(&mutableRoot)
+
 
 
