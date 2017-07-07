@@ -149,6 +149,15 @@ class BinarySearchTree<T: Comparable> {
 
         return left + right + 1
     }
+
+    func heightOfTree(_ root: Node<T>?) -> Int {
+        if root == nil {
+            return 0
+        }
+        let left = heightOfTree(root?.left)
+        let right = heightOfTree(root?.right)
+        return 1 + max(left, right)
+    }
 }
 
 
@@ -201,5 +210,9 @@ tree2.insert("Jon", root: root2)
 
 tree1.sameTree(root1, root2)
 tree1.sizeOfTree(root1)
+
+tree1.heightOfTree(root1)
+
+tree.heightOfTree(root)
 
 
