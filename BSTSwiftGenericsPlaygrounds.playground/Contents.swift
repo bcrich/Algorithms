@@ -126,6 +126,19 @@ class BinarySearchTree<T: Comparable> {
         
         return root
     }
+
+    func sameTree(_ root1: Node<T>?, _ root2: Node<T>?) -> Bool {
+        if root1 == nil && root2 == nil {
+            return true
+        }
+        if root1 == nil || root2 == nil {
+            return false
+        }
+
+        return root1?.data == root2?.data &&
+            sameTree(root1?.left, root2?.left) &&
+            sameTree(root1?.right, root2?.right)
+    }
 }
 
 
@@ -156,5 +169,27 @@ tree.inorder(root: root)
 tree.deleteNode(root: root, data: "c")
 print("*********")
 tree.inorder(root: root)
+
+
+
+
+let tree1 = BinarySearchTree<String>()
+let tree2 = BinarySearchTree<String>()
+
+let root1 = Node(data: "Sam")
+let root2 = Node(data: "Sam")
+
+tree1.insert("Arya", root: root1)
+tree2.insert("Arya", root: root2)
+
+tree1.insert("Bran", root: root1)
+tree2.insert("Bran", root: root2)
+
+
+tree1.insert("Jon", root: root1)
+tree2.insert("Jon", root: root2)
+
+tree1.sameTree(root1, root2)
+
 
 
