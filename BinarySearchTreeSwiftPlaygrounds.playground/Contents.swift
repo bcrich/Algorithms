@@ -139,6 +139,34 @@ class BinarySearchTree {
         return root
     }
 
+    func rootToLeafSum(_ root: Node?, _ sum: Int, _ result: [Int]) -> Bool {
+        var result = result
+        if root == nil {
+            return false
+        }
+
+        //check leafy node
+        if root?.left == nil && root?.right == nil {
+            if sum == root?.data {
+                result.append((root?.data)!)
+                return true
+            }
+        }
+        // if its non leafy go to the left
+        if rootToLeafSum(root?.left, sum - (root?.data)!, result) {
+            result.append((root?.data)!)
+            return true
+        }
+
+        // if result not found, go to the right
+        if rootToLeafSum(root?.right, sum - (root?.data)!, result) {
+            result.append((root?.data)!)
+            return true
+        }
+
+        return false
+    }
+
 }
 
 
