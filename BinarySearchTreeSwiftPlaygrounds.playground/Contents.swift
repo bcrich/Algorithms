@@ -269,6 +269,26 @@ class BinarySearchTree {
             }
         }
     }
+
+    func isBalanced(_ root: Node?) -> Bool  {
+        if root == nil {
+            return true
+        }
+        var leftCount = 0
+        var rightCount = 0
+
+        var current = root
+        while current != nil {
+            leftCount += 1
+            current = current?.left
+        }
+        var cur = root
+        while cur != nil {
+            rightCount += 1
+            cur = cur?.right
+        }
+        return (abs(leftCount - rightCount)) <= 1
+    }
 }
 
 
