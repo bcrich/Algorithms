@@ -1,5 +1,4 @@
-func longestConsecutive(_ nums: [Int]) -> Int {
-    var s = nums
+func longestConsecutive(_ s: [Int]) -> Int {
     var ans = 0
     for i in 0..<s.count {
         if !s.contains(s[i] - 1) {
@@ -13,4 +12,4 @@ func longestConsecutive(_ nums: [Int]) -> Int {
     return ans
 }
 
-longestConsecutive([1,9,4,5,6,8,7,2])
+longestConsecutive([1,2,5,3,6,7,8])
